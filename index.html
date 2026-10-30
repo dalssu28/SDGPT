@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17243d">
+  <title>성동GPT 이용 가능 모델 및 단가 안내</title>
+  <style>
+    :root {
+      --navy: #17243d;
+      --blue: #4771b5;
+      --page: #f1f5fa;
+      --panel: #ffffff;
+      --card: #f7f9fd;
+      --card-border: #e8edf5;
+      --text: #18263e;
+      --muted: #64748b;
+      --hot-bg: #ffe6e6;
+      --hot-border: #f4dfd8;
+      --hot-text: #9b3030;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--text);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .page-header {
+      position: relative;
+      overflow: hidden;
+      min-height: 180px;
+      padding: 34px 24px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .header-inner,
+    main {
+      width: min(1090px, 100%);
+      margin: 0 auto;
+    }
+
+    .page-header::before,
+    .page-header::after {
+      position: absolute;
+      content: "";
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .page-header::before {
+      width: 310px;
+      height: 310px;
+      top: -135px;
+      right: -35px;
+      background: #294674;
+      opacity: .65;
+    }
+
+    .page-header::after {
+      width: 180px;
+      height: 180px;
+      top: 55px;
+      right: -50px;
+      background: #4165a0;
+      opacity: .45;
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0 0 5px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+      letter-spacing: -.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: #dbeafe;
+      font-size: 16px;
+    }
+
+    .total-badge {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 6px 15px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    main {
+      padding: 22px 0 48px;
+    }
+
+    .intro {
+      margin: 0 0 14px;
+      padding: 0 4px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .intro p {
+      margin: 5px 0;
+    }
+
+    .intro p:last-child {
+      color: var(--hot-text);
+      font-weight: 600;
+    }
+
+    .legend,
+    .section {
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 4px 15px rgb(23 36 61 / 4%);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 34px;
+      align-items: center;
+      margin-bottom: 18px;
+      padding: 18px 22px;
+    }
+
+    .legend-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: #263449;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .swatch {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      background: var(--card);
+    }
+
+    .swatch.hot {
+      border-color: var(--hot-border);
+      background: var(--hot-bg);
+    }
+
+    .search-wrap {
+      margin-bottom: 18px;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 18px;
+    }
+
+    .search-wrap input::placeholder {
+      color: #94a3b8;
+    }
+
+    .section {
+      margin-bottom: 18px;
+      padding: 22px;
+    }
+
+    .section-heading {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .accent {
+      width: 7px;
+      height: 30px;
+      flex: 0 0 7px;
+      border-radius: 5px;
+    }
+
+    .accent.openai { background: #13a87b; }
+    .accent.google { background: #4285f4; }
+    .accent.anthropic { background: #c77950; }
+    .accent.perplexity { background: #d86a72; }
+    .accent.wrks { background: #6277c9; }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 22px;
+      letter-spacing: -.025em;
+    }
+
+    .count {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 18px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 14px 18px;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      background: var(--card);
+      min-height: 120px;
+      height: 100%;
+    }
+
+    .card.hot {
+      border-color: var(--hot-border);
+      background: var(--hot-bg);
+    }
+
+    .card h3 {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 6px;
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .card.hot h3,
+    .card.hot .price,
+    .card.hot .price-label {
+      color: var(--hot-text);
+    }
+
+    .price {
+      margin: 2px 0 0;
+      color: #263449;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .price-label {
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .small-note {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      transform: translateY(1px);
+    }
+
+    .card.hot .card-tag {
+      background: #fecaca;
+      color: #9b3030;
+    }
+
+    .card.model-card {
+      position: relative;
+      overflow: visible;
+      cursor: pointer;
+    }
+
+    .card.model-card:hover,
+    .card.model-card:focus-within {
+      z-index: 20;
+    }
+
+    .popover-card {
+      position: absolute;
+      z-index: 30;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: #17243d;
+      color: #fff;
+      box-shadow: 0 4px 15px rgb(23 36 61 / 15%);
+      
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+
+      transition:
+        opacity 180ms ease,
+        visibility 180ms ease;
+    }
+
+    .model-card:hover .popover-card,
+    .model-card:focus-within .popover-card {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .popover-header-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .popover-heading {
+      margin: 0;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .popover-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgb(71 113 181 / 35%);
+      color: #93c5fd;
+      border: 1px solid rgb(147 197 253 / 30%);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      transform: translateY(1px);
+    }
+
+    .popover-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgb(255 255 255 / 12%);
+      color: #dbeafe;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      transform: translateY(1px);
+    }
+
+    .popover-card.is-hot .popover-status {
+      background: rgb(248 113 113 / 18%);
+      color: #fecaca;
+    }
+
+    .popover-desc {
+      margin: 2px 0 0;
+      color: #cbd5e1;
+      font-size: 16px;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+
+    .empty-message {
+      display: none;
+      padding: 22px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      main { padding: 18px 14px 36px; }
+      .page-header { min-height: 170px; padding: 28px 18px; }
+      .subtitle { font-size: 14px; }
+      .section { padding: 17px; }
+      .cards { grid-template-columns: 1fr; }
+      .legend { gap: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <div class="header-inner">
+      <h1>성동GPT 이용 가능 모델</h1>
+      <p class="subtitle">제조사별 모델 및 이용 단가 · 2026. 10. 27. 기준</p>
+      <span class="total-badge">총 16개 모델</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="intro">
+      <p>입력·출력 단가는 1천 토큰(한글 약 1,600자) 기준이며, Nano Banana Pro는 이미지 1장 기준입니다.</p>
+      <p>입력 토큰 수가 20만을 초과(한글 약 320,000자)할 경우 입력 토큰 수는 2배, 출력 토큰 수는 1.5배로 할증 계산됩니다. 긴 대화는 삼가 주시기 바랍니다.</p>
+    </div>
+
+    <div class="legend" aria-label="모델 사용 안내 범례">
+      <div class="legend-item">
+        <span class="swatch hot" aria-hidden="true"></span>
+        <span>신청·승인 후 사용 가능</span>
+      </div>
+      <div class="legend-item">
+        <span class="swatch" aria-hidden="true"></span>
+        <span>사용가능</span>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <label for="search-input" class="visually-hidden">모델 검색</label>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="모델명 또는 항목 검색"
+        aria-label="모델명 또는 항목 검색"
+      >
+    </div>
+
+    <section class="section" aria-labelledby="openai-title">
+      <div class="section-heading">
+        <span class="accent openai" aria-hidden="true"></span>
+        <h2 id="openai-title">OpenAI (ChatGPT)</h2>
+        <span class="count">4개 모델</span>
+      </div>
+      <div class="cards">
+        <article class="card hot model-card" data-description="복잡한 전문 업무와 고난도 코딩, 브라우저·컴퓨터 조작까지 폭넓게 수행하는 추론 모델입니다.">
+          <h3>GPT-6 Astra(초고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 36.25원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 181.25원</p>
+        </article>
+        <article class="card model-card" data-description="복잡한 코딩과 여러 단계를 거치는 복잡한 요청을 처리할 수 있는 고사양 모델입니다.">
+          <h3>GPT-6.1 Sol(고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.25원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 36.25원</p>
+        </article>
+        <article class="card model-card" data-description="일상적인 문서 요약, 초안 작성 등에 적합한 빠르고 경제적인 표준 모델입니다.">
+          <h3>GPT-6.1 Terra(일반 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 3.625원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 18.125원</p>
+        </article>
+        <article class="card model-card" data-description="가장 빠르고 저렴하며 단순한 질의응답이나 빠른 응답이 필요한 곳에 쓰입니다.">
+          <h3>GPT-6 Luna(경량화 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 0.3625원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 1.8125원</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="google-title">
+      <div class="section-heading">
+        <span class="accent google" aria-hidden="true"></span>
+        <h2 id="google-title">Google (Gemini)</h2>
+        <span class="count">5개 모델</span>
+      </div>
+      <div class="cards">
+        <article class="card model-card" data-description="복잡한 소프트웨어 개발과 수학·과학 문제 해결, 여러 단계로 이어지는 에이전트 작업에 초점을 둔 모델입니다.">
+          <h3>Gemini 4 Argon(고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 14.5원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 72.5원</p>
+        </article>
+        <article class="card model-card" data-description="텍스트와 이미지 등 다양한 입력을 이해하고, 추론과 코딩을 비롯한 폭넓은 작업을 지원하는 Pro 모델입니다.">
+          <h3>Gemini 3.1 Pro(고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.35원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 44.1원</p>
+        </article>
+        <article class="card model-card" data-description="빠른 응답과 효율적인 처리를 중시하면서, 긴 코딩 작업과 복잡한 업무 흐름에도 대응하도록 설계된 모델입니다.">
+          <h3>Gemini 3.8 Flash(경량화 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 5.4375원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 27.1875원</p>
+        </article>
+        <article class="card hot model-card" data-description="여러 자료를 단계적으로 조사하고 정보를 종합해, 근거를 갖춘 심층 보고서 작성을 지원하는 연구형 모델입니다.">
+          <h3>Gemini Deep Research(심층조사)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 3.55원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 21.30원</p>
+        </article>
+        <article class="card hot model-card" data-description="텍스트 지시와 맥락을 반영해 이미지를 생성하고 편집하는 모델입니다.">
+          <h3>Nano Banana Pro(이미지 생성)</h3>
+          <p class="price">이미지 1장당 약 441원</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="anthropic-title">
+      <div class="section-heading">
+        <span class="accent anthropic" aria-hidden="true"></span>
+        <h2 id="anthropic-title">Anthropic (Claude)</h2>
+        <span class="count">4개 모델</span>
+      </div>
+      <div class="cards">
+        <article class="card hot model-card" data-description="까다로운 추론과 장시간 이어지는 에이전트 작업, 코딩 및 전문 지식 업무에 적합한 고성능 모델입니다.">
+          <h3>Claude Fable 5.1(초고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 18.85원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 94.25원</p>
+        </article>
+        <article class="card model-card" data-description="긴 시간 동안 진행되는 에이전트 코딩과 복잡한 지식 업무에서 높은 성능을 발휘하도록 설계된 모델입니다.">
+          <h3>Claude Opus 5.5(고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 14.5원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 72.5원</p>
+        </article>
+        <article class="card model-card" data-description="응답 속도와 지능의 균형을 갖춰, 일상적인 업무부터 명확한 목표가 있는 전문 작업까지 폭넓게 돕는 모델입니다.">
+          <h3>Claude Sonnet 5.5(일반 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.25원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 36.25원</p>
+        </article>
+        <article class="card model-card" data-description="빠른 응답과 비용 효율성이 강점으로, 요약·분류·정보 추출처럼 대량으로 처리하는 작업에 알맞은 모델입니다.">
+          <h3>Claude Haiku 5.5(경량화 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 0.725원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 3.625원</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="perplexity-title">
+      <div class="section-heading">
+        <span class="accent perplexity" aria-hidden="true"></span>
+        <h2 id="perplexity-title">Perplexity (Sonar)</h2>
+        <span class="count">3개 모델</span>
+      </div>
+      <div class="cards">
+        <article class="card hot model-card" data-description="웹 검색을 바탕으로 최신 정보를 찾아 답변하고, 응답에 참고 출처를 함께 제시하는 검색 중심 모델입니다.">
+          <h3>Sonar Pro(고사양 모델)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 11.025원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 55.125원</p>
+        </article>
+        <article class="card hot model-card" data-description="여러 단계를 거치는 분석과 논리적 추론을 통해, 복잡한 질문에 체계적인 답변을 제공하는 추론 중심 모델입니다.">
+          <h3>Sonar Reasoning Pro(심층조사)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.35원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 29.4원</p>
+        </article>
+        <article class="card hot model-card" data-description="여러 자료를 폭넓게 조사하고 내용을 종합해, 출처를 바탕으로 심층적인 보고서를 작성하는 연구형 모델입니다.">
+          <h3>Sonar Deep Research(심층조사)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.35원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 29.4원</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="wrks-title">
+      <div class="section-heading">
+        <span class="accent wrks" aria-hidden="true"></span>
+        <h2 id="wrks-title">Wrks AI 제공</h2>
+        <span class="count">3개 항목</span>
+      </div>
+      <div class="cards">
+        <article class="card model-card" data-description="문서의 형식을 유지한 채 텍스트를 고품질로 번역해 주는 서비스입니다.">
+          <h3>문서 번역</h3>
+          <p class="price">1회당 기본 2만 자까지 500원</p>
+          <p class="price">이후 추가 1자당 0.025원 <span class="small-note">(PDF 1장당 50원 추가)</span></p>
+        </article>
+        <article class="card model-card" data-description="명령어를 통해 업무나 보고서에 필요한 이미지를 간편하게 생성합니다.">
+          <h3>이미지 생성</h3>
+          <p class="price">1장당 500원</p>
+        </article>
+        <article class="card model-card" data-description="텍스트 초안을 기반으로 발표용 슬라이드 덱을 자동으로 구성해 줍니다.">
+          <h3>슬라이드 생성</h3>
+          <p class="price">슬라이드 1장당 300원</p>
+          <p class="price">콘티 1회당 300원</p>
+        </article>
+      </div>
+    </section>
+
+    <p id="empty-message" class="empty-message">검색 결과가 없습니다.</p>
+  </main>
+
+<script>
+  const searchInput = document.getElementById("search-input");
+  const cards = [...document.querySelectorAll(".model-card")];
+  const sections = [...document.querySelectorAll(".section")];
+  const emptyMessage = document.getElementById("empty-message");
+
+  cards.forEach((card) => {
+    const title = card.querySelector("h3");
+    if (!title) return;
+
+    card.tabIndex = 0;
+    card.setAttribute("aria-label", `${title.textContent.trim()} 상세 정보`);
+
+    const rawTitleText = title.textContent.trim();
+    
+    // 괄호 안의 문구(예: 초고사양 모델, 심층조사 등) 추출
+    const match = rawTitleText.match(/^(.*?)\((.*?)\)$/);
+    let pureName = rawTitleText;
+    let modelTagText = "";
+
+    if (match) {
+      pureName = match[1].trim();
+      modelTagText = match[2].trim();
+    }
+
+    // 1. 일반 표출 시: [순수 모델명] + [모델 등급/유형 뱃지]
+    title.textContent = pureName;
+    if (modelTagText) {
+      const cardTag = document.createElement("span");
+      cardTag.className = "card-tag";
+      cardTag.textContent = modelTagText;
+      title.appendChild(cardTag);
+    }
+
+    // 2. Popover 표출 시
+    const popover = document.createElement("div");
+    popover.className = "popover-card";
+    popover.setAttribute("role", "tooltip");
+    popover.setAttribute("aria-hidden", "true");
+
+    if (card.classList.contains("hot")) {
+      popover.classList.add("is-hot");
+    }
+
+    const headerRow = document.createElement("div");
+    headerRow.className = "popover-header-row";
+
+    // Popover 모델명
+    const heading = document.createElement("h4");
+    heading.className = "popover-heading";
+    heading.textContent = pureName;
+
+    headerRow.append(heading);
+
+    // Popover 모델명 오른쪽 1) [모델 등급/유형 뱃지]
+    if (modelTagText) {
+      const popoverTag = document.createElement("span");
+      popoverTag.className = "popover-tag";
+      popoverTag.textContent = modelTagText;
+      headerRow.append(popoverTag);
+    }
+
+    // Popover 모델명 오른쪽 2) [사용가능 뱃지]
+    const status = document.createElement("span");
+    status.className = "popover-status";
+    status.textContent = card.classList.contains("hot")
+      ? "신청·승인 후 사용 가능"
+      : "사용가능";
+
+    headerRow.append(status);
+
+    const descText = card.dataset.description || "상세 설명이 준비되지 않았습니다.";
+
+    // 화면에는 보이지 않지만 스크린 리더가 읽을 수 있는 설명
+    const screenReaderDescription = document.createElement("span");
+    screenReaderDescription.className = "visually-hidden";
+    screenReaderDescription.id = `model-description-${cards.indexOf(card) + 1}`;
+    screenReaderDescription.textContent = descText;
+
+    // 카드에 포커스했을 때 제목에 이어 설명을 안내하도록 연결
+    card.setAttribute("aria-describedby", screenReaderDescription.id);
+
+    // 기존 시각 팝오버 내용
+    const description = document.createElement("p");
+    description.className = "popover-desc";
+    description.textContent = descText;
+
+    popover.append(headerRow, description);
+    card.append(screenReaderDescription, popover);
+  });
+
+searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLocaleLowerCase("ko");
+    let visibleTotal = 0;
+
+    sections.forEach((section) => {
+      const sectionCards = [...section.querySelectorAll(".model-card")];
+      let visibleSectionCards = 0;
+
+      sectionCards.forEach((card) => {
+        const cardContent = Array.from(card.childNodes)
+          .filter(node => !node.classList || !node.classList.contains('popover-card'))
+          .map(node => node.textContent)
+          .join(" ")
+          .toLocaleLowerCase("ko");
+          
+        const matches = cardContent.includes(query);
+        card.hidden = !matches;
+        if (matches) {
+          visibleSectionCards++;
+          visibleTotal++;
+        }
+      });
+
+      // 섹션 표출 여부 결정
+      section.hidden = visibleSectionCards === 0;
+
+      // 섹션 상단 카운트 동적 업데이트
+      const countEl = section.querySelector(".count");
+      if (countEl) {
+        const unit = section.id === "wrks-title" ? "개 항목" : "개 모델";
+        countEl.textContent = `${visibleSectionCards}${unit}`;
+      }
+    });
+
+    emptyMessage.style.display = visibleTotal === 0 ? "block" : "none";
+  });</script>
+</body>
+</html>
