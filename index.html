@@ -447,7 +447,7 @@
   <header class="page-header">
     <div class="header-inner">
       <h1>성동GPT 이용 가능 모델</h1>
-      <p class="subtitle">제조사별 모델 및 이용 단가 · 2026. 10. 27. 기준</p>
+      <p class="subtitle">제조사별 모델 및 이용 단가 · 2026. 11. 9. 기준</p>
       <span class="total-badge">총 16개 모델</span>
     </div>
   </header>
@@ -536,7 +536,7 @@
           <p class="price"><span class="price-label">입력:</span> 1천 토큰당 3.55원</p>
           <p class="price"><span class="price-label">출력:</span> 1천 토큰당 21.30원</p>
         </article>
-        <article class="card hot model-card" data-description="텍스트 지시와 맥락을 반영해 이미지를 생성하고 편집하는 모델입니다.">
+        <article class="card model-card" data-description="텍스트 지시와 맥락을 반영해 이미지를 생성하고 편집하는 모델입니다.">
           <h3>Nano Banana Pro(이미지 생성)</h3>
           <p class="price">이미지 1장당 약 441원</p>
         </article>
@@ -580,20 +580,23 @@
         <span class="count">3개 모델</span>
       </div>
       <div class="cards">
-        <article class="card hot model-card" data-description="웹 검색을 바탕으로 최신 정보를 찾아 답변하고, 응답에 참고 출처를 함께 제시하는 검색 중심 모델입니다.">
+        <article class="card model-card" data-description="웹 검색을 바탕으로 최신 정보를 찾아 답변하고, 응답에 참고 출처를 함께 제시하는 검색 중심 모델입니다.">
           <h3>Sonar Pro(고사양 모델)</h3>
-          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 11.025원</p>
-          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 55.125원</p>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 0.3675원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 1.8375원</p>
+          <p class="price">웹 검색 및 페이지 읽기 1회당 5.5125원</p>
         </article>
-        <article class="card hot model-card" data-description="여러 단계를 거치는 분석과 논리적 추론을 통해, 복잡한 질문에 체계적인 답변을 제공하는 추론 중심 모델입니다.">
-          <h3>Sonar Reasoning Pro(심층조사)</h3>
-          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.35원</p>
-          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 29.4원</p>
+        <article class="card model-card" data-description="여러 단계를 거치는 분석과 논리적 추론을 통해, 복잡한 질문에 체계적인 답변을 제공하는 추론 중심 모델입니다.">
+          <h3>Sonar Reasoning Pro(심층분석)</h3>
+          <p class="price"><span class="price-label">입력:</span> 1천 토큰당 0.3675원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 1.8375원</p>
+          <p class="price">웹 검색 및 페이지 읽기 1회당 5.5125원</p>
         </article>
         <article class="card hot model-card" data-description="여러 자료를 폭넓게 조사하고 내용을 종합해, 출처를 바탕으로 심층적인 보고서를 작성하는 연구형 모델입니다.">
           <h3>Sonar Deep Research(심층조사)</h3>
           <p class="price"><span class="price-label">입력:</span> 1천 토큰당 7.35원</p>
-          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 29.4원</p>
+          <p class="price"><span class="price-label">출력:</span> 1천 토큰당 36.75원</p>
+          <p class="price">웹 검색 및 페이지 읽기 1회당 5.5125원</p>
         </article>
       </div>
     </section>
@@ -625,132 +628,121 @@
     <p id="empty-message" class="empty-message">검색 결과가 없습니다.</p>
   </main>
 
-<script>
-  const searchInput = document.getElementById("search-input");
-  const cards = [...document.querySelectorAll(".model-card")];
-  const sections = [...document.querySelectorAll(".section")];
-  const emptyMessage = document.getElementById("empty-message");
+  <script>
+    const searchInput = document.getElementById("search-input");
+    const cards = [...document.querySelectorAll(".model-card")];
+    const sections = [...document.querySelectorAll(".section")];
+    const emptyMessage = document.getElementById("empty-message");
 
-  cards.forEach((card) => {
-    const title = card.querySelector("h3");
-    if (!title) return;
+    cards.forEach((card) => {
+      const title = card.querySelector("h3");
+      if (!title) return;
 
-    card.tabIndex = 0;
-    card.setAttribute("aria-label", `${title.textContent.trim()} 상세 정보`);
+      card.tabIndex = 0;
+      card.setAttribute("aria-label", `${title.textContent.trim()} 상세 정보`);
 
-    const rawTitleText = title.textContent.trim();
-    
-    // 괄호 안의 문구(예: 초고사양 모델, 심층조사 등) 추출
-    const match = rawTitleText.match(/^(.*?)\((.*?)\)$/);
-    let pureName = rawTitleText;
-    let modelTagText = "";
+      const rawTitleText = title.textContent.trim();
+      const match = rawTitleText.match(/^(.*?)\((.*?)\)$/);
+      let pureName = rawTitleText;
+      let modelTagText = "";
 
-    if (match) {
-      pureName = match[1].trim();
-      modelTagText = match[2].trim();
-    }
+      if (match) {
+        pureName = match[1].trim();
+        modelTagText = match[2].trim();
+      }
 
-    // 1. 일반 표출 시: [순수 모델명] + [모델 등급/유형 뱃지]
-    title.textContent = pureName;
-    if (modelTagText) {
-      const cardTag = document.createElement("span");
-      cardTag.className = "card-tag";
-      cardTag.textContent = modelTagText;
-      title.appendChild(cardTag);
-    }
+      title.textContent = pureName;
+      if (modelTagText) {
+        const cardTag = document.createElement("span");
+        cardTag.className = "card-tag";
+        cardTag.textContent = modelTagText;
+        title.appendChild(cardTag);
+      }
 
-    // 2. Popover 표출 시
-    const popover = document.createElement("div");
-    popover.className = "popover-card";
-    popover.setAttribute("role", "tooltip");
-    popover.setAttribute("aria-hidden", "true");
+      const popover = document.createElement("div");
+      popover.className = "popover-card";
+      popover.setAttribute("role", "tooltip");
+      popover.setAttribute("aria-hidden", "true");
 
-    if (card.classList.contains("hot")) {
-      popover.classList.add("is-hot");
-    }
+      if (card.classList.contains("hot")) {
+        popover.classList.add("is-hot");
+      }
 
-    const headerRow = document.createElement("div");
-    headerRow.className = "popover-header-row";
+      const headerRow = document.createElement("div");
+      headerRow.className = "popover-header-row";
 
-    // Popover 모델명
-    const heading = document.createElement("h4");
-    heading.className = "popover-heading";
-    heading.textContent = pureName;
+      const heading = document.createElement("h4");
+      heading.className = "popover-heading";
+      heading.textContent = pureName;
 
-    headerRow.append(heading);
+      headerRow.append(heading);
 
-    // Popover 모델명 오른쪽 1) [모델 등급/유형 뱃지]
-    if (modelTagText) {
-      const popoverTag = document.createElement("span");
-      popoverTag.className = "popover-tag";
-      popoverTag.textContent = modelTagText;
-      headerRow.append(popoverTag);
-    }
+      if (modelTagText) {
+        const popoverTag = document.createElement("span");
+        popoverTag.className = "popover-tag";
+        popoverTag.textContent = modelTagText;
+        headerRow.append(popoverTag);
+      }
 
-    // Popover 모델명 오른쪽 2) [사용가능 뱃지]
-    const status = document.createElement("span");
-    status.className = "popover-status";
-    status.textContent = card.classList.contains("hot")
-      ? "신청·승인 후 사용 가능"
-      : "사용가능";
+      const status = document.createElement("span");
+      status.className = "popover-status";
+      status.textContent = card.classList.contains("hot")
+        ? "신청·승인 후 사용 가능"
+        : "사용가능";
 
-    headerRow.append(status);
+      headerRow.append(status);
 
-    const descText = card.dataset.description || "상세 설명이 준비되지 않았습니다.";
+      const descText = card.dataset.description || "상세 설명이 준비되지 않았습니다.";
 
-    // 화면에는 보이지 않지만 스크린 리더가 읽을 수 있는 설명
-    const screenReaderDescription = document.createElement("span");
-    screenReaderDescription.className = "visually-hidden";
-    screenReaderDescription.id = `model-description-${cards.indexOf(card) + 1}`;
-    screenReaderDescription.textContent = descText;
+      const screenReaderDescription = document.createElement("span");
+      screenReaderDescription.className = "visually-hidden";
+      screenReaderDescription.id = `model-description-${cards.indexOf(card) + 1}`;
+      screenReaderDescription.textContent = descText;
 
-    // 카드에 포커스했을 때 제목에 이어 설명을 안내하도록 연결
-    card.setAttribute("aria-describedby", screenReaderDescription.id);
+      card.setAttribute("aria-describedby", screenReaderDescription.id);
 
-    // 기존 시각 팝오버 내용
-    const description = document.createElement("p");
-    description.className = "popover-desc";
-    description.textContent = descText;
+      const description = document.createElement("p");
+      description.className = "popover-desc";
+      description.textContent = descText;
 
-    popover.append(headerRow, description);
-    card.append(screenReaderDescription, popover);
-  });
+      popover.append(headerRow, description);
+      card.append(screenReaderDescription, popover);
+    });
 
-searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim().toLocaleLowerCase("ko");
-    let visibleTotal = 0;
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLocaleLowerCase("ko");
+      let visibleTotal = 0;
 
-    sections.forEach((section) => {
-      const sectionCards = [...section.querySelectorAll(".model-card")];
-      let visibleSectionCards = 0;
+      sections.forEach((section) => {
+        const sectionCards = [...section.querySelectorAll(".model-card")];
+        let visibleSectionCards = 0;
 
-      sectionCards.forEach((card) => {
-        const cardContent = Array.from(card.childNodes)
-          .filter(node => !node.classList || !node.classList.contains('popover-card'))
-          .map(node => node.textContent)
-          .join(" ")
-          .toLocaleLowerCase("ko");
-          
-        const matches = cardContent.includes(query);
-        card.hidden = !matches;
-        if (matches) {
-          visibleSectionCards++;
-          visibleTotal++;
+        sectionCards.forEach((card) => {
+          const cardContent = Array.from(card.childNodes)
+            .filter(node => !node.classList || !node.classList.contains('popover-card'))
+            .map(node => node.textContent)
+            .join(" ")
+            .toLocaleLowerCase("ko");
+            
+          const matches = cardContent.includes(query);
+          card.hidden = !matches;
+          if (matches) {
+            visibleSectionCards++;
+            visibleTotal++;
+          }
+        });
+
+        section.hidden = visibleSectionCards === 0;
+
+        const countEl = section.querySelector(".count");
+        if (countEl) {
+          const unit = section.id === "wrks-title" ? "개 항목" : "개 모델";
+          countEl.textContent = `${visibleSectionCards}${unit}`;
         }
       });
 
-      // 섹션 표출 여부 결정
-      section.hidden = visibleSectionCards === 0;
-
-      // 섹션 상단 카운트 동적 업데이트
-      const countEl = section.querySelector(".count");
-      if (countEl) {
-        const unit = section.id === "wrks-title" ? "개 항목" : "개 모델";
-        countEl.textContent = `${visibleSectionCards}${unit}`;
-      }
+      emptyMessage.style.display = visibleTotal === 0 ? "block" : "none";
     });
-
-    emptyMessage.style.display = visibleTotal === 0 ? "block" : "none";
-  });</script>
+  </script>
 </body>
 </html>
