@@ -136,11 +136,24 @@
     }
 
     .legend,
+    .policy-box,
     .section {
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--panel);
       box-shadow: 0 1px 2px rgb(20 37 61 / 6%);
+    }
+
+    .policy-box {
+      margin-bottom: 14px;
+      padding: 16px 22px;
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .policy-box p {
+      margin: 0;
     }
 
     .legend {
@@ -459,6 +472,10 @@
       <p>입력 토큰 수가 20만을 초과(한글 약 320,000자)할 경우 입력 토큰 수는 2배, 출력 토큰 수는 1.5배로 할증 계산됩니다. 긴 대화는 삼가 주시기 바랍니다.</p>
     </div>
 
+    <div class="policy-box" aria-label="월 사용액 조정 안내">
+      <p>성동GPT 제공 모델은 이용 현황을 모니터링하여 전체 월 사용액이 총액을 초과하지 않도록 필요에 따라 조정될 수 있습니다.(특히 고사양 모델)</p>
+    </div>
+
     <div class="legend" aria-label="모델 사용 안내 범례">
       <div class="legend-item">
         <span class="swatch hot" aria-hidden="true"></span>
@@ -561,7 +578,7 @@
           <p class="price"><span class="price-label">입력:</span> 1천 토큰당 18.85원</p>
           <p class="price"><span class="price-label">출력:</span> 1천 토큰당 94.25원</p>
         </article>
-        <article class="card model-card" data-description="긴 시간 동안 진행되는 에이전트 코딩과 복잡한 지식 업무에서 높은 성능을 발휘하도록 설계된 모델입니다.">
+        <article class="card hot model-card" data-description="긴 시간 동안 진행되는 에이전트 코딩과 복잡한 지식 업무에서 높은 성능을 발휘하도록 설계된 모델입니다.">
           <h3>Claude Opus 5.5(고사양 모델)</h3>
           <p class="price"><span class="price-label">입력:</span> 1천 토큰당 14.5원</p>
           <p class="price"><span class="price-label">출력:</span> 1천 토큰당 72.5원</p>
